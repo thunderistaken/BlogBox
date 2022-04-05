@@ -4,7 +4,7 @@ import Blog from "../db/blogModel.js";
 
 const router = express.Router();
 
-//Get all memories
+
 router.get("/", async (req, res) => {
   try {
     const blogs = await Blog.find();
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//Get single memory
+
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//Post memory
+
 router.post("/", async (req, res) => {
   try {
     const blog = req.body;
@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-//Update memory
+
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
   try {
@@ -69,7 +69,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-//Delete the memory
+
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
