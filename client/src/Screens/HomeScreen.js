@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { fetchBlogs } from "../axios";
+
 import { Spinner, Row, Col } from "react-bootstrap";
 import Blog from "../components/Blog";
+import { useDispatch, useSelector} from "react-redux";
+import { fetchBlogs } from "../actions/blogActions";
+
 const HomeScreen = () => {
-  const [blogs, setBlogs] = useState([]);
+  const dispatch = useDispatch()
+  const blogs = useSelector((state) => state.blogs)
+
   useEffect(() => {
-    const getBlogs = async () => {
-      const { data } = await fetchBlogs();
-      console.log(data);
-      setBlogs(data);
-    };
-    getBlogs();
-  }, []);
+    if(!blogs[0]){
+      dispatch(fetchBlogs())
+
+    }
+    
+  
+  }, [dispatch]);
+  
 
   return (
     <>

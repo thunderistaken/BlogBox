@@ -4,9 +4,13 @@ import moment from "moment";
 import { LinkContainer } from "react-router-bootstrap";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin2Line } from "react-icons/ri";
-import { deleteBlog } from "../axios/index";
+import { deleteBlog } from '../actions/blogActions'
+import { useDispatch } from "react-redux";
+
+
 
 const Blog = ({ blog }) => {
+  const dispatch = useDispatch()
   return (
     <Card className="rounded py-3 my-3">
       <Card.Img variant="top" src={blog.image} />
@@ -28,7 +32,7 @@ const Blog = ({ blog }) => {
           size={23}
           color="red"
           style={{ cursor: "pointer" }}
-          onClick={() => deleteBlog(blog._id)}
+          onClick={() => {dispatch(deleteBlog(blog._id))}}
         />
       </Card.Footer>
     </Card>

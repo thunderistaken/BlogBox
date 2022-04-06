@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import ReactFileBase64 from "react-file-base64";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { updateBlog, fetchBlog } from "../axios";
+import { fetchBlog } from "../axios";
+import {updateBlog} from '../actions/blogActions'
+import { useDispatch } from "react-redux";
 
 const UpdateBlog = ({ id }) => {
+  const dispatch = useDispatch()
   const [blogData, setBlogData] = useState({
     title: "",
     content: "",
@@ -28,7 +31,7 @@ const UpdateBlog = ({ id }) => {
       onSubmit={(e) => {
         e.preventDefault();
 
-        updateBlog(id, blogData);
+       dispatch(updateBlog(id, blogData))
         navigate("/");
       }}
     >

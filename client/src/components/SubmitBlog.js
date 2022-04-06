@@ -3,6 +3,8 @@ import ReactFileBase64 from "react-file-base64";
 import { Form, Button } from "react-bootstrap";
 import * as api from "../axios/index";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createBlog } from "../actions/blogActions";
 
 const SubmitBlog = () => {
   const [blogData, setBlogData] = useState({
@@ -12,6 +14,7 @@ const SubmitBlog = () => {
     image: "",
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   return (
     <Form
@@ -19,7 +22,7 @@ const SubmitBlog = () => {
       onSubmit={(e) => {
         e.preventDefault();
 
-        api.createBlog(blogData);
+        dispatch(createBlog(blogData))
 
         navigate("/");
       }}
